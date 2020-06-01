@@ -36,6 +36,7 @@ module.exports = function (app) {
                 res.json(data)
             })
             .catch(err => {
+                console.log(err)
                 res.json(err)
             })
     });
