@@ -29,9 +29,7 @@ module.exports = function (app) {
     });
 ​
     app.post("/api/workouts", function (req, res) {
-​
-        /* TODO complete create */
-        Workout.create()
+        Workout.create(req.body)
             .then(data => {
                 res.json(data)
             })
@@ -43,8 +41,8 @@ module.exports = function (app) {
 ​
     app.get("/api/workouts/range", function (req, res) {
 ​
-        /* TODO complete limit */
-        Workout.limit()
+        Workout.find()
+            .limit(7) // filter and limit 7 records (indicates 1 workout per day during the 7 day week)
             .then(data => {
                 res.json(data)
             })
