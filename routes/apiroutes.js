@@ -1,7 +1,5 @@
-const Workout = require ("../model/model.js")
-​
+const Workout = require ("../model/model.js");
 module.exports = function (app) {
-​
     app.get("/api/workouts", (req, res) => {
         Workout.find()
           .then(data => {
@@ -11,11 +9,8 @@ module.exports = function (app) {
             res.json(err);
           });
     });
-​
     app.put("/api/workouts/:id", function (req, res) {
-​
         const {id, body} = req.params;
-​
         Workout.findByIdAndUpdate(
             id, 
             { $push: { exercises: body } },
@@ -27,7 +22,6 @@ module.exports = function (app) {
             res.json(err);
         });
     });
-​
     app.post("/api/workouts", function (req, res) {
         Workout.create(req.body)
             .then(data => {
@@ -38,9 +32,7 @@ module.exports = function (app) {
                 res.json(err)
             })
     });
-​
     app.get("/api/workouts/range", function (req, res) {
-​
         Workout.find()
             .limit(7) // filter and limit 7 records (indicates 1 workout per day during the 7 day week)
             .then(data => {
@@ -50,5 +42,4 @@ module.exports = function (app) {
                 res.json(err)
             })
     });
-​
 }
